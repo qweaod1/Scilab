@@ -23,3 +23,6 @@ function Y=Cmk(MG,w,k);
     Y=MG;
     Y(:,k)=w;
 endfunction;
+
+ME=msum(M,E);
+detME=wz2(ME);
