@@ -1,0 +1,77 @@
+// 1. Wprowadzić dane: n, xo,..., En, M.
+clear
+clc
+m = 2;
+n = 8;
+li = 150;
+lp = 100;
+ap = -2;
+bp = 3;
+xo = [-1.1; -0.83; -0.57; -0.28; -0.02; 0.16; 0.47; 0.95; 1.23];
+
+// 2. Zadeklarować funkcję f.
+function y = f(x)
+    y = exp(sin(x) + cos(x));
+endfunction
+
+// 3. Obliczyć wartości f(xo),..., f(xn)
+yw = zeros(1, n);
+for i = 1:n
+    yw(i) = f(xo(i));
+end
+
+if m == 0 | m == 1 | m == 2 then
+    xi = linspace(ap, bp, li)';
+    for j = 0:(2 * m)
+        xj = xi.^j; // Calculate xi^j element-wise
+        g(j + 1) = trapz(xi, xj);
+    end
+
+    for j = 0:m
+        xj = xi.^j;
+        r(j + 1) = trapz(xi, xj .* f(xi)');
+    end
+
+    // 4. Oprogramować różne przypadki ze względu na wartość parametru m.
+    switch m
+        case 0 then
+            // a) m = 0
+            a = r(1) / g(1);
+        case 1 then
+            // b) m = 1
+            d = g(2) * g(2) - g(1) * g(3);
+            a(1) = (-g(3) * r(1) + g(2) * r(2)) / d;
+            a(2) = (g(2) * r(1) - g(1) * r(2)) / d;
+        case 2 then
+            // c) m = 2
+            d = g(3) * g(3) * g(3) + g(1) * g(4) * g(4) + g(2) * g(2) * g(5) - g(3) * (2 * g(2) * g(4) + g(1) * g(5));
+            l0 = g(4) * g(4) * r(1) - g(3) * g(5) * r(1) + g(2) * g(5) * r(2) + g(3) * g(3) * r(3) - g(4) * (g(3) * r(2) + g(2) * r(3));
+            l1 = g(2) * g(5) * r(1) + g(3) * g(3) * r(2) - g(3) * (g(4) * r(1) + g(2) * r(3)) + g(1) * (-g(5) * r(2) + g(4) * r(3));
+            l2 = g(3) * g(3) * r(1) - g(2) * g(4) * r(1) + g(1) * g(4) * r(2) + g(2) * g(2) * r(3) - g(3) * (g(2) * r(2) + g(1) * r(3));
+            a(1) = l0 / d;
+            a(2) = l1 / d;
+            a(3) = l2 / d;
+        else
+            // d) pozostałe wartości m
+            disp('Komunikat: Nieprawidłowa wartość parametru m.');
+            return; // Added return statement to exit the function
+    end
+end
+
+// 5. Zadeklarować funkcję aproksymującą F.
+function y_ = F(x_, a_, m_)
+    y_ = a_(1);
+    for j = 1:m_
+        y_ = y_ + a_(j + 1) * (x_ ^ j);
+    end
+endfunction
+
+if m == 0 | m == 1 | m == 2 then
+    xt = linspace(ap - 0.1, bp + 0.1, lp)';
+    for i = 1:lp
+        Ft(i) = F(xt(i), a, m);
+        ft(i) = f(xt(i));
+    end
+    plot(xt, Ft);
+    plot(xt, ft, "k");
+end
