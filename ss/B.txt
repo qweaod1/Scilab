@@ -1,0 +1,39 @@
+﻿
+Elementy metod numerycznych-grupa I
+Kolokwium nr 2-wersja B
+Zadanie
+Napisać skrypt Scilab wyznaczający dla danych węzłów Subscript[x,0] ... Subscript[x,n] wartości funkcji f 
+w węzłach wielomianów aproksymacyjnych F stopnia 1. Wygenerować wykres wyznaczonego wielomianu aproksymacyjnego
+F na przedziale (a,b)oraz punktów wyznaczonych przez węzły i odpowiadające im wartości funkcji f.
+Dane wejściowe
+Parametr n∈N, węzły Subscript[x,0] ... Subscript[x,n], funkcja f. przedział (a,b),
+Wyniki wyjściowe
+współczynniki Subscript[a,0] i Subscript[a,1], wielomianu aproksymującego F
+Dans testowe
+n = 10, odpowiednie węzły Czebyszewa f(x)=e^x-(x+1)^2, (a,b) = <-1.1).
+Metoda rozwiązania
+Węzły Czebyszewa
+\[ Subscript[x{i}]=\cos \left(\frac{2 i+1}{2(n+1)} \pi\right), i=0,1, \cdots \cdots n \]
+
+Współczynniki równań normalnych:
+\^x^{0} \equiv 1, \quad Subscript[\fo,Subscript[all,{j=0,1,2}]] Subscript[g,{j}]=Subscript[\sum,{i=0}]^{n} Subscript[x,{i}]^{j}, \quad Subscript[\forall,{j=0,1}] Subscript[\varrho,{j}]=Subscript[\sum,{i=0}]^{n} f\left(Subscript[x,{i}\right]) Subscript[x,{i}]^{j} .\]
+Rozwiązania równań normalnych:
+Subscript[a,0]=Divide[-Subscript[g,2]Subscript[p,0]+Subscript[g,1]Subscript[p,1],Power[Subscript[g,1],2]-Subscript[g,0]Subscript[g,2]]
+Subscript[a,1]=Divide[Subscript[g,1]Subscript[p,0]-Subscript[g,0]Subscript[p,1],Power[Subscript[g,1],2]-Subscript[g,0]Subscript[g,2]]
+Wielomian aproksymacyjny F
+F(x)=Subscript[a,0] + Subscript[a,1]*x
+
+1. Ogólny schemat skryptu
+a) po wprowedniu dane powinny zostać kontrolnie wyświetlone w konsoli 
+b) skrypt, powinien zawierać samodzielnie zadeklarowane funkcje
+e) wyniki końcowe powinny być wypisane w konsoli
+2. Skrypt powinien zawierać następujące funkcje
+a) knots-realizująca obliczanie wartości węzłów Czebyszewa
+b) F-realizująca obliczanie wartości wielomianu aproksymacyjnego F
+Punktacja
+Fragmenty skladowe skrypta: wprowadzenie danych liczbowych (1p), kontrolne wypisanie danych liczbowych (1p), 
+obliczenie węzłów Czebyszewa (1p.), deklaracja funkcji f (1p.), obliczenie wartości funkcji f w węzłach (1p.),
+obliczenie współczynników g(2p), obliczenie współczynników o (2p.), obliczenie współczynników Subscript[a,0] i Subscript[a,1] (1p),
+wygenerowanie wektora punktów dla funkcji plot (1p.), obliczenie wartości funkcji F (1p),
+wygenerowanie wykresu funkcji F (p.), umieszczenie na wykresie punktów wyznaczonych przez węzły i odpowiadające im wartości funkcji f(1p).
+Realizacja wybranych obliczeń za pomocą funkcji knots (1p). F (1p). Razem: 16p

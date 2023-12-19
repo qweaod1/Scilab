@@ -1,0 +1,49 @@
+﻿
+Elementy metod numerycznych grupa 2
+Kolokwium nr 2- wersja D
+Zadanie:
+Napisać skrypt Scilab'a wyznaczający dla danej liczby N węzłów trygonometrycznych i
+wartości funkcji f w tych węzłach aproksymacyjnych wielomian trygonometryczny F 
+maksymalnego stopnia Subscript[s,max]. Wygenerować as przedziale (a, b) wykres funkcji R=(f-F)^2
+
+Dane wejściowe
+Parametr N ≥ 1, funkcja f, przedział (a,b).
+
+Wyniki wyjściowe
+współczynniki Subscript[a,0]...Subscript[a,max] i Subscript[b,0]...Subscript[b,max] 
+wielomianu aproksymująego F
+
+Dane tekstowe
+N = 11, f(x) = Power[x,2]ln(x-7), (a,b)=(0, 2π)
+
+Metoda rozwiązania
+Stopien maksymalny:
+s≤Subscript[s,max] Subscript[s,max]=(Divide[N-1,2])
+
+Węzły trygonometryczne
+Subscript[x,i]=Divide[2πi,N] i=0,...,N-1
+
+Współczynniki aproksymacyjnego wielomianu trygonometrycznego:
+Subscript[a,i]=Divide[2,N] Sum[f,{i,0,N-1}](Subscript[x,i])Cos[Subscript[jx,i]], j=0,1,...,Subscript[s,max]
+Subscript[b,i]=Divide[2,N] Sum[f,{i,0,N-1}](Subscript[x,i])Sin[Subscript[jx,i]], j=1,...,Subscript[s,max]
+
+Aproksymacyjny wielomian trygonometryczny F
+Subscript[F,i](x) = Divide[Subscript[a,0],2] + Sum[(Subscript[a,j]Cos[jx]+Subscript[b,j]Sin[jx]),{j,1,Subscript[s,max]}]
+Funkcja R
+R(x)=(f(x)- F(x))^2
+
+Uwagi
+1. Ogólny schemat skryptu
+a) po wprowadzeniu dane powinny zostać kontrolnie wypisane w konsoli;
+b) skrypt powinien zawierać samodzielnie zadeklarowane funkcje:
+c) wyniki końcowe powinny być wypisane w konsoli
+2. Skrypt powinien zawierać następujące funkcje:
+a) F realizująca obliczanie wartości aproksymacyjnego wielomianu trygonometrycznego F
+b) R realizująca obliczanie wartości funkcji R
+Punktacja
+Fragmenty skladowe skryptu: wprowadzenie danych liczbowych (1p), kontrolne wypisanie danych liczbowych (1p.),
+obliczenie węzłów trygonometrycznych (1p), deklaracja funkcji f (1p), obliczenie wartości funkcjt f w węzłach (1p),
+obliczeni maksymalnego stopnia Subscript[s,max] (1p), obliczenie współczynników Subscript[a,j], (2p). 
+obliczenie współczynników Subscript[b,j], (2p), wygenerowanie wektora punktów dla funkcji plot (1p). 
+obliczenie wartości funkcji F (1p.), obliczenie wrtości funkcji R (1p), wygenerowanie wykresu funkcji R (1p).
+Realizacja wybranych obliczeń za pomocą funkcji F (1p), R (1p.). Razem: 16p

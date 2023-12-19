@@ -1,0 +1,56 @@
+﻿
+
+Elementy metod numerycznych - grupa 2
+Kolokwium nr 2-wersja C
+Zadanie:
+Napisad skrypt Scilab'a obliczający za pomocą metody Steffensens N pierwszych 
+rozwiązań przybliżonych równania nieliniowego f(x)=0 położonych wewnątrz 
+przedziału (a, b). Założenia metody siecznych zweryfikować dla dokladnej postaci f^t i f^n 
+zastępując przedział (a, b) punktami a i b. Wypisać do konsoli wszystkie uzyskane 
+przybliżenia \( x_{\mathrm{n}} \), razem z ich numerami.
+Dane wejściowe
+Parametr \( N \geqslant 1 \), przedział (a. 6), funkcja f
+Wyniki wyjściowe
+cing kolejnych przybliżeń Subscript[x,0] ... Subscript[x,n]
+Dane testowe
+\[
+N=10,(a, b)=(-2 ; 0>, f(x)=exp(x)-x^{2}
+\]
+Metoda rozwiązania:
+Założenia:
+\[
+\begin{array}{l}
+f(a)-f(b)<0, \\
+f^{\prime}(a)-f^{\prime}(b)>0, \\
+f^{\prime \prime}(a) \cdot f^{\prime \prime}(b)>0 .
+\end{array}
+\]
+Wybór punktu początkowego:
+jeżeli f(a)*f''(a)>0 to Subscript[x,0]=a w przecinym wypadku Subscript[x,0]=b. Wzór metody:
+\[
+\begin{array}{c}
+g(x)=\frac{f(x+f(x))-f(x)}{f(x)} \\
+x_{n}=x_{n-1}-\frac{f\left(x_{n-1}\right)}{g\left(x_{n-1}\right)}, \quad n=1,2, \ldots . .
+\end{array}
+\]
+
+Przybliżona wartości wyrażenia \( \mid x_{n}-\alpha[ \) :
+\[
+\left|x_{n}-\alpha\right| \approx \frac{\left|\x_{n}-x_{n-1}\right|}{\left|f\left(x_{n}\right)-f\left(x_{n-1}\right)\right|}\left|f\left(x_{n}\right)\right| .
+\]
+Uwagi:
+1. Ogólny schemat skryptu
+a) po wprowadzeniu dane powinny zostać kontrolnie wypisane w konsoli; 
+b) skrypt powinien zawierać samodzielnie zadeklarowane funkcje
+c) wyniki końcowe powinny być wypisane w konsoli
+2. Skrypt powinien zawierać następujące funkcje:
+a) new_nol-realizująca obliczanie wartości nowego przybliżenia Subscript[x,n]
+b) g-realizująca obliczanie wartości funkcji pomocniczej g.
+Punktacja:
+Fragmenty skladowe skryptu: wprowadzenie danych liczbowych (1p.), 
+kontrolne wy pisanie danych liczbowych (1p.), deklaracja funkcji f(1p.), deklaracja funkcji f'(1p.), 
+deklaracja funkcji f" (1p.), zbadanie założeń metody (3p.), wybór punktu początkowego (2p.),
+obliczenie wartości funkcji pomocniczej g (1p), obliczenie wartości 
+nowego przybliżenia Subscript[x,n] (1p), realizacja obliczeń metody za pomocą odpowiedniej 
+petli (1p.), wypisanie wyników do konsoli (1p.).
+Realizacja wybranych obliczeń za pomocą funkcji: new_sol (1p.), g (1p.). Razem: 16p

@@ -1,0 +1,56 @@
+Elementy metod numerycznych-grupa 1
+Kolokwium nr 2 - wersja A
+
+Zadana:
+Napisać skrypt Scilab'a obliczający z dokładnością \( 10^{-r} \) za pomoca metody siecznych 
+rozwiązanie przybliżone równania nieliniowego \( f(x)=0 \) położone wewnątrz przedziału \( \langle a, b\rangle \). Zalożenia metody siecznych zweryfikować dla dokladnej postaci \( f^{\prime} \) i \( f^{\prime \prime} \) zastępując przedział \( \langle a, b\rangle \) punktami \( a \) i \( b \). Wypisać do konsoli wszystkie uzyskane przybliżenia \( x_{n} \) razem z ich numerami oraz przewidywaną dia nich dokładność \( \left|x_{n}-\alpha\right| \), gdzie \( \alpha \) jest dokladną wartością pierwiastka.
+
+Dane wejściowe:
+Parametr r≥1, przedział <a,b>, funkcja f.
+
+Wyniki wyj̇ściowe:
+ciag kolejnych przyblizeń \( x_{0}, x_{1}\ldots \)
+
+Dane testowe:
+\[
+r=4,\langle a, b\rangle=\langle-1,1\rangle, f(x)=\sin (x)+(x+1)^{2} .
+\]
+
+Metoda rozwiazania:
+Załóżnia:
+\[
+\begin{array}{r}
+f(a) \cdot f(b)<0, \\
+f^{\prime}(a) \cdot f^{\prime}(b)>0, \\
+f^{\prime \prime}(a) \cdot f^{\prime \prime}(b)>0 .
+\end{array}
+\]
+
+Wybór punktu poczatkowego: jezeli \( f^{\prime}(x) f^{\prime \prime}(x)<0 \), to \( x_{-1}=b \) i \( x_{0}=a \), w przeciwnym wypadku \( x_{-1}=a \) i \( x_{0}=b \). Wzór metody:
+\[
+x_{n}=x_{n-1}-\frac{f\left(x_{n-1}\right)}{f\left(x_{n-1}\right)-f\left(x_{n-2}\right)}\left(x_{n-1}-x_{n-2}\right), \quad n=1,2, \ldots
+\]
+
+Przybliżona wartośc wyrażenia \( \left|x_{n}-\alpha\right|+ \)
+\[
+\left|x_{n}-\alpha\right| \approx \frac{\left|x_{n}-x_{n-1}\right|}{\left|f\left(x_{n}\right)-f\left(x_{n-1}\right)\right|}\left|f\left(x_{n}\right)\right| .
+\]
+
+Uwagi:
+1. Ogólny schemat skryptu:
+a) po wprowadzeniu dane powinny zostać kontrolnie wypisane w konsoli;
+b) skrypt powinien zawierać samodzielnie zadeklarowane funkcje;
+c) wyniki końcowe powinny być wypisane w konsoli.
+2. Skrypt powinien zawierać następujące funkcje:
+a) new_sol-realizająca obliczanie wartości nowego przybliżenia \( x_{n} \);
+b) xn_dist - realizująca obliczanie wartości przybliżonej \( \left|x_{n}-a\right| \).
+
+Punktacja:
+Fragmenty składowe skryptu: wprowadzenie danych liczbowych (1p.),
+kontrolne wypisanie danych liczbowych (1p.) deklaracja funkcji \( f \) (1p.), deklaracja funkcji \( f \) ' (1p.),
+deklaracja funkcji \( f^{\prime \prime} \) (1p.), zbadanie założeń metody (3p.), 
+wybór punktów początkowych (1p.), obliczenie wartości nowego przybliżenia \( x_{n} \) (1p.), 
+obliczenie wartości przybliżonej wyrażenia \( \left|x_{n}-\alpha\right| \) (1p.), 
+realizacja obliczeń metody za pomoca odpowiedniej pętli (1p.), wypisanie wyników do konsoli (2p.).
+Realizacja wybranych obliczeń za pomocą funkcji: new_sol (Ip.), xn_dist (1p.). Razem: 16p.
+
